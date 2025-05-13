@@ -68,3 +68,29 @@ export function caesarCipher(string, shiftFactor) {
 
   return result;
 }
+
+export function analyzeArray(array) {
+  const hasNonNumber = array.some((element) => typeof element !== 'number');
+
+  if (hasNonNumber) throw new Error('array contains at least one non-number element');
+
+  const sum = array.reduce((acc, cur) => {
+    acc += cur;
+    return acc;
+  }, 0);
+
+  const length = array.length;
+
+  const average = sum / length;
+
+  const min = array.reduce((acc, cur) => (acc < cur ? acc : cur));
+
+  const max = array.reduce((acc, cur) => (acc > cur ? acc : cur));
+
+  return {
+    average,
+    min,
+    max,
+    length,
+  };
+}
