@@ -1,6 +1,6 @@
 // functions.test.js
 
-import { capitalize, reverseString, calculator } from './functions';
+import { capitalize, reverseString, calculator, caesarCipher} from './functions';
 
 describe('capitalize', () => {
 
@@ -135,4 +135,24 @@ describe('calculator multiply', () => {
   test('not a number throws', () => {
     expect(() => calculator.multiply('foo', 'bar')).toThrow(Error);
   });
+});
+
+describe('ceasar cipher', () => {
+  
+  test('string without wrapping', () => {
+    expect(caesarCipher('abc', 3)).toBe('def');
+  });
+
+  test('string with wrapping', () => {
+    expect(caesarCipher('xyz', 3)).toBe('abc');
+  });
+
+  test('case preservation', () => {
+    expect(caesarCipher('HeLLo', 3)).toBe('KhOOr');
+  })
+
+  test('punctuation', () => {
+    expect(caesarCipher('Hello, World!', 3)).toBe('Khoor, Zruog!')
+  })
+
 });

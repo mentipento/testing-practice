@@ -9,7 +9,7 @@ export function capitalize(string) {
 }
 
 export function reverseString(string) {
-  if (string === '' || (typeof string !== 'string' && typeof string !== 'number')) throw new Error ('string cannot be empty');
+  if (string === '' || (typeof string !== 'string' && typeof string !== 'number')) throw new Error('string cannot be empty');
 
   if (typeof string === 'number') {
     string = string.toString();
@@ -35,9 +35,8 @@ export const calculator = {
 
   divide(num1, num2) {
     this.validateInput(num1, num2);
-    if(num2 === 0)
-      throw new Error('division through 0');
-    return num1 / num2
+    if (num2 === 0) throw new Error('division through 0');
+    return num1 / num2;
   },
 
   multiply(num1, num2) {
@@ -45,5 +44,27 @@ export const calculator = {
     return num1 * num2;
   },
 
-
 };
+
+export function caesarCipher(string, shiftFactor) {
+  const lower = 'abcdefghijklmnopqrstuvwxyz';
+  const upper = lower.toUpperCase();
+
+  let result = '';
+  let alphabet = null;
+  for (const character of string) {
+    if (!lower.includes(character) && !upper.includes(character)) {
+      result += character;
+    } else {
+      if (character === character.toLowerCase()) {
+        alphabet = lower;
+      } else {
+        alphabet = upper;
+      }
+
+      result += alphabet[(alphabet.indexOf(character) + shiftFactor) % 26];
+    }
+  }
+
+  return result;
+}
